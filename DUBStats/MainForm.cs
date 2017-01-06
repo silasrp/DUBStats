@@ -4,7 +4,6 @@ using System.Text;
 using System.Windows.Forms;
 using Novacode;
 
-
 namespace DUBStats
 {
     public partial class MainForm : Form
@@ -63,40 +62,61 @@ namespace DUBStats
             var currentLoop = 0;
             var loopsList = new List<int>();
             var count = 0;
-            using (var document = DocX.Load(filePath))
+            try
             {
-                foreach (var paragraph in document.Paragraphs)
+                using (var document = DocX.Load(filePath))
                 {
-                    if (System.Text.RegularExpressions.Regex.IsMatch(paragraph.Text, _dubHeaderPattern))
+                    foreach (var paragraph in document.Paragraphs)
                     {
-                        count++;
-                        var match = System.Text.RegularExpressions.Regex.Match(paragraph.Text, _dubNumberPattern);
-                        currentLoop = Convert.ToInt32(match.Value);
-                        loopsList.Add(currentLoop);
-                    }
-                    else if (System.Text.RegularExpressions.Regex.IsMatch(paragraph.Text, _characterHeaderPattern))
-                    {
-                        var match = System.Text.RegularExpressions.Regex.Match(paragraph.Text, _characterPattern);
-                        var character = match.Value.Replace("]", "");
-                        character = character.Trim();
-                        if (!_parseResult.ContainsKey(character))
+                        if (System.Text.RegularExpressions.Regex.IsMatch(paragraph.Text, _dubHeaderPattern))
                         {
-                            _parseResult.Add(character, new Dictionary<int,int> {{currentLoop, 1}});
+                            count++;
+                            var match = System.Text.RegularExpressions.Regex.Match(paragraph.Text, _dubNumberPattern);
+                            currentLoop = Convert.ToInt32(match.Value);
+                            loopsList.Add(currentLoop);
                         }
-                        else
+                        else if (System.Text.RegularExpressions.Regex.IsMatch(paragraph.Text, _characterHeaderPattern))
                         {
-                            if (!_parseResult[character].ContainsKey(currentLoop))
+                            var match = System.Text.RegularExpressions.Regex.Match(paragraph.Text, _characterPattern);
+                            var character = match.Value.Replace("]", "");
+                            character = character.Trim();
+                            if (!_parseResult.ContainsKey(character))
                             {
-                                _parseResult[character].Add(currentLoop, 1);
+                                _parseResult.Add(character, new Dictionary<int, int> {{currentLoop, 1}});
                             }
                             else
                             {
-                                _parseResult[character][currentLoop]++;
+                                if (!_parseResult[character].ContainsKey(currentLoop))
+                                {
+                                    _parseResult[character].Add(currentLoop, 1);
+                                }
+                                else
+                                {
+                                    _parseResult[character][currentLoop]++;
+                                }
                             }
                         }
                     }
+                    MessageBox.Show(@"There are " + count + @" dub headers.");
                 }
-                MessageBox.Show(@"There are " + count + @" dub headers.");
+            }
+            catch (System.IO.FileFormatException ex)
+            {
+                MessageBox.Show(this,
+                    @"The Word document is not in the right format. Please convert it to a .DOCX format for Word 2007 or more recent.",
+                    @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (System.IO.IOException ex)
+            {
+                MessageBox.Show(this,
+                    @"The document cannot be parsed because it is being used by another process. Please make sure that the document is closed in your machine.",
+                    @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this,
+                    ex.Message + @" Contact the technical support.",
+                    @"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);                
             }
         }
 
@@ -123,6 +143,7 @@ namespace DUBStats
                 text.AppendLine();
             }
             resultTextBox.Text = text.ToString(0, text.Length);
+            PdfCreator.CreatePdf(text.ToString(0, text.Length));
         }
     }
 }
