@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.selectFileLabel = new System.Windows.Forms.Label();
             this.fileLocationTextBox = new System.Windows.Forms.TextBox();
             this.getStatsButton = new System.Windows.Forms.Button();
@@ -38,8 +39,8 @@
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openInputFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeProjectNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setOutputFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,29 +117,22 @@
             this.setOutputFolderToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.menuToolStripMenuItem.Text = "Project";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
+            this.menuToolStripMenuItem.Text = "Project Options";
             // 
             // openInputFileToolStripMenuItem
             // 
             this.openInputFileToolStripMenuItem.Name = "openInputFileToolStripMenuItem";
-            this.openInputFileToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.openInputFileToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.openInputFileToolStripMenuItem.Text = "Open Input File...";
             this.openInputFileToolStripMenuItem.Click += new System.EventHandler(this.openInputFileToolStripMenuItem_Click);
             // 
             // changeProjectNameToolStripMenuItem
             // 
             this.changeProjectNameToolStripMenuItem.Name = "changeProjectNameToolStripMenuItem";
-            this.changeProjectNameToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.changeProjectNameToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.changeProjectNameToolStripMenuItem.Text = "Change Project Name...";
             this.changeProjectNameToolStripMenuItem.Click += new System.EventHandler(this.changeProjectNameToolStripMenuItem_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // setOutputFolderToolStripMenuItem
             // 
@@ -146,6 +140,13 @@
             this.setOutputFolderToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
             this.setOutputFolderToolStripMenuItem.Text = "Set Default Output Folder...";
             this.setOutputFolderToolStripMenuItem.Click += new System.EventHandler(this.setOutputFolderToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -159,6 +160,7 @@
             this.Controls.Add(this.fileLocationTextBox);
             this.Controls.Add(this.selectFileLabel);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "DUBStats";
