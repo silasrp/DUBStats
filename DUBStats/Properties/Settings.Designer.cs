@@ -22,5 +22,17 @@ namespace DUBStats.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\")]
+        public string OutputDefaultFolder {
+            get {
+                return ((string)(this["OutputDefaultFolder"]));
+            }
+            set {
+                this["OutputDefaultFolder"] = value;
+            }
+        }
     }
 }

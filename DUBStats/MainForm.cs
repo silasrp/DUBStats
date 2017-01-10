@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using Novacode;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace DUBStats
 {
@@ -13,7 +14,10 @@ namespace DUBStats
         private readonly string _characterHeaderPattern;
         private readonly string _characterPattern;
         private string _inputFile;
+        private string _outputFile;
+        private StringBuilder _result;
         private Dictionary<string, Dictionary<int, int>> _parseResult;
+        private string _filmName = String.Empty;
 
         public MainForm()
         {
@@ -39,21 +43,32 @@ namespace DUBStats
             InitializeComponent();
         }
 
-        private void searchButton_Click(object sender, EventArgs e)
+        private void OpenInputFile()
         {
             var openFileDialog = new OpenFileDialog
             {
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                 Title = @"Select File",
                 Filter = @"Word files|*.doc;*.docx|All Files|*.*"
             };
 
-            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() != DialogResult.OK) return;
             {
                 _inputFile = openFileDialog.FileName;
                 fileLocationTextBox.Text = _inputFile;
                 resultTextBox.Text = String.Empty;
                 ParseInputFile(_inputFile);
             }
+
+            if (_filmName == String.Empty)
+            {
+                ChangeProjectName();
+            }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            OpenInputFile();
         }
 
         private void ParseInputFile(string filePath)
@@ -98,6 +113,7 @@ namespace DUBStats
                         }
                     }
                     MessageBox.Show(@"There are " + count + @" dub headers.");
+                    ShowPreview();
                 }
             }
             catch (System.IO.FileFormatException ex)
@@ -120,30 +136,77 @@ namespace DUBStats
             }
         }
 
-        private void getStatsButton_Click(object sender, EventArgs e)
+        private void ShowPreview()
         {
-            var text = new StringBuilder();
+             if (_result != null) _result.Clear();
+            _result = new StringBuilder();
             foreach (var outerKeyValuePair in _parseResult)
             {
                 var count = 0;
-                text.AppendLine(outerKeyValuePair.Key + ": " + _parseResult[outerKeyValuePair.Key].Keys.Count + " loops.");
+                _result.AppendLine(outerKeyValuePair.Key + ": " + _parseResult[outerKeyValuePair.Key].Keys.Count + " loops.");
                 foreach (var innerKeyValuePair in _parseResult[outerKeyValuePair.Key])
                 {
                     if (count == _parseResult[outerKeyValuePair.Key].Keys.Count)
                     {
-                        text.AppendLine(innerKeyValuePair.Key + ".");
+                        _result.AppendLine(innerKeyValuePair.Key + ".");
                     }
                     else
                     {
-                        text.Append(innerKeyValuePair.Key + ", ");
+                        _result.Append(innerKeyValuePair.Key + ", ");
                     }
                     count++;
                 }
-                text.AppendLine();
-                text.AppendLine();
+                _result.AppendLine();
+                _result.AppendLine();
             }
-            resultTextBox.Text = text.ToString(0, text.Length);
-            PdfCreator.CreatePdf(text.ToString(0, text.Length));
+            resultTextBox.Text = _result.ToString(0, _result.Length);
+        }
+
+        private void getStatsButton_Click(object sender, EventArgs e)
+        {
+            var saveFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = Properties.Settings.Default.OutputDefaultFolder,
+                Title = @"Save File",
+                Filter = @"Pdf files|*.pdf;"
+            };
+
+            if (saveFileDialog.ShowDialog() != DialogResult.OK) return;
+
+            _outputFile = saveFileDialog.FileName;
+            PdfCreator.CreatePdf(_parseResult, _outputFile, _filmName);
+        }
+
+        private void ChangeProjectName()
+        {
+            var filmName = new FilmName(_filmName);
+            if (filmName.ShowDialog() != DialogResult.OK) return;
+            _filmName = filmName.ProjectName;
+        }
+
+        private void openInputFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenInputFile();
+        }
+
+        private void changeProjectNameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChangeProjectName();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void setOutputFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dialog = new CommonOpenFileDialog { InitialDirectory = Properties.Settings.Default.OutputDefaultFolder, IsFolderPicker = true };
+
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                Properties.Settings.Default.OutputDefaultFolder = dialog.FileName;
+            }
         }
     }
 }
