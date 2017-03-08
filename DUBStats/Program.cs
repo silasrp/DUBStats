@@ -14,6 +14,7 @@ namespace DUBStats
         [STAThread]
         static void Main()
         {
+            // test github
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
