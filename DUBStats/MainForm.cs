@@ -47,7 +47,7 @@ namespace DUBStats
         {
             var openFileDialog = new OpenFileDialog
             {
-                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                InitialDirectory = "C:\\Users\\Silas\\OneDrive\\Benny",
                 Title = @"Select File",
                 Filter = @"Word files|*.doc;*.docx|All Files|*.*"
             };
@@ -199,7 +199,18 @@ namespace DUBStats
             Close();
         }
 
-        private void setOutputFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenUpdateLogoForm()
+        {
+            var updateLogo = new SelectLogo();
+            if (updateLogo.ShowDialog() != DialogResult.OK) return;
+        }
+
+        private void selectCompanyLogoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenUpdateLogoForm();
+        }
+
+        private void setDefaultOutputFoderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var dialog = new CommonOpenFileDialog { InitialDirectory = Properties.Settings.Default.OutputDefaultFolder, IsFolderPicker = true };
 

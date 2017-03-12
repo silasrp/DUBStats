@@ -1,0 +1,17 @@
+F:\Workspace\Repos\DUBStats\DUBStats\bin\Debug\DUBStats.exe.config
+F:\Workspace\Repos\DUBStats\DUBStats\bin\Debug\DUBStats.exe
+F:\Workspace\Repos\DUBStats\DUBStats\bin\Debug\DUBStats.pdb
+F:\Workspace\Repos\DUBStats\DUBStats\bin\Debug\DocX.dll
+F:\Workspace\Repos\DUBStats\DUBStats\bin\Debug\itextsharp.dll
+F:\Workspace\Repos\DUBStats\DUBStats\bin\Debug\itextsharp.pdfa.dll
+F:\Workspace\Repos\DUBStats\DUBStats\bin\Debug\itextsharp.xmlworker.dll
+F:\Workspace\Repos\DUBStats\DUBStats\bin\Debug\itextsharp.xtra.dll
+F:\Workspace\Repos\DUBStats\DUBStats\bin\Debug\Microsoft.WindowsAPICodePack.dll
+F:\Workspace\Repos\DUBStats\DUBStats\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+F:\Workspace\Repos\DUBStats\DUBStats\obj\Debug\DUBStats.FilmName.resources
+F:\Workspace\Repos\DUBStats\DUBStats\obj\Debug\DUBStats.MainForm.resources
+F:\Workspace\Repos\DUBStats\DUBStats\obj\Debug\DUBStats.Properties.Resources.resources
+F:\Workspace\Repos\DUBStats\DUBStats\obj\Debug\DUBStats.csproj.GenerateResource.Cache
+F:\Workspace\Repos\DUBStats\DUBStats\obj\Debug\DUBStats.exe
+F:\Workspace\Repos\DUBStats\DUBStats\obj\Debug\DUBStats.pdb
+F:\Workspace\Repos\DUBStats\DUBStats\obj\Debug\DUBStats.SelectLogo.resources

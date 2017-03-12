@@ -34,29 +34,38 @@ namespace DUBStats
                 //Set document metadata
                 writer.ViewerPreferences = PdfWriter.DisplayDocTitle;
                 document.AddLanguage("en-US");
-                document.AddTitle("Casting Stats & Loops: " + projectName);
+                document.AddTitle("Casting & Loops Stats: " + projectName);
                 writer.CreateXmpMetadata();
                 //=====================
                 document.Open();
 
                 Paragraph p = new Paragraph();
+                Image i = Image.GetInstance("Bright_Way_Logo.jpg");
+                i.SetAbsolutePosition(50,500);
+                Chunk c = new Chunk(i, 0, 0);
+                c.SetAccessibleAttribute(PdfName.ALT, new PdfString("Logo"));
+                p.Alignment = Element.ALIGN_TOP;
+                p.Add(i);
+                document.Add(p);
+
+                p = new Paragraph();
                 //PDF/UA
                 //Embed font
                 //Font font = FontFactory.GetFont(FONT, BaseFont.WINANSI, BaseFont.EMBEDDED, 20);
                 Font font = FontFactory.GetFont("C:/Windows/Fonts/arialbd.ttf", BaseFont.WINANSI, BaseFont.EMBEDDED, 20f);
                 p.Font = font;
-                //==================
-                Chunk c = new Chunk("Bright Way – Casting Stats & Loops");
+                Chunk title = new Chunk("Casting & Loops Stats");
                 p.Alignment = Element.ALIGN_CENTER;
-                p.Add(c);
-                //Image i = Image.GetInstance(FOX);
-                //c = new Chunk(i, 0, -24);
-                //PDF/UA
-                //Set alt text
-                //c.SetAccessibleAttribute(PdfName.ALT, new PdfString("Fox"));
-                //==============
-                //p.Add(c);
+                p.Add("\n");
+                p.Add("\n");
+                p.Add("\n");
+                p.Add("\n");
+                p.Add("\n");
+                p.Add(title);
                 document.Add(p);
+
+                //p = new Paragraph("\n", font);
+                //document.Add(p);
 
                 p = new Paragraph("\n", font);
                 document.Add(p);
@@ -67,7 +76,7 @@ namespace DUBStats
 
                 var cellFilmTitle = new PdfPCell(new Phrase("PROJETO: " + projectName,
                         FontFactory.GetFont("C:/Windows/Fonts/arialbd.ttf", BaseFont.WINANSI,
-                            BaseFont.EMBEDDED, 12f, Font.BOLD, BaseColor.WHITE)))
+                            BaseFont.EMBEDDED, 12f, Font.BOLD, BaseColor.BLACK)))
                 {
                     BackgroundColor = BaseColor.LIGHT_GRAY,
                     Colspan = 2,
@@ -80,7 +89,7 @@ namespace DUBStats
 
                 var cellActor = new PdfPCell(new Phrase("ATOR/ATRIZ",
                         FontFactory.GetFont("C:/Windows/Fonts/arialbd.ttf", BaseFont.WINANSI,
-                            BaseFont.EMBEDDED, 12f, Font.BOLD, BaseColor.WHITE)))
+                            BaseFont.EMBEDDED, 12f, Font.BOLD, BaseColor.BLACK)))
                 {
                     BackgroundColor = BaseColor.ORANGE,
                     HorizontalAlignment = 1, //0=Left, 1=Centre, 2=Right
@@ -92,7 +101,7 @@ namespace DUBStats
 
                 var cellCharacter = new PdfPCell(new Phrase("PERSONAGEM/LOOPS",
                         FontFactory.GetFont("C:/Windows/Fonts/arialbd.ttf", BaseFont.WINANSI,
-                            BaseFont.EMBEDDED, 12f, Font.BOLD, BaseColor.WHITE)))
+                            BaseFont.EMBEDDED, 12f, Font.BOLD, BaseColor.BLACK)))
                 {
                     BackgroundColor = BaseColor.ORANGE,
                     HorizontalAlignment = 1, //0=Left, 1=Centre, 2=Right

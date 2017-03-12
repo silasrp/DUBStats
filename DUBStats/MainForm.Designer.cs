@@ -39,8 +39,10 @@
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openInputFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changeProjectNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setOutputFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectCompanyLogoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setDefaultOutputFoderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,7 +104,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem});
+            this.menuToolStripMenuItem,
+            this.setupToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(495, 24);
@@ -114,39 +117,55 @@
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openInputFileToolStripMenuItem,
             this.changeProjectNameToolStripMenuItem,
-            this.setOutputFolderToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
+            this.menuToolStripMenuItem.ShowShortcutKeys = false;
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
             this.menuToolStripMenuItem.Text = "Project Options";
             // 
             // openInputFileToolStripMenuItem
             // 
             this.openInputFileToolStripMenuItem.Name = "openInputFileToolStripMenuItem";
-            this.openInputFileToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.openInputFileToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.openInputFileToolStripMenuItem.Text = "Open Input File...";
             this.openInputFileToolStripMenuItem.Click += new System.EventHandler(this.openInputFileToolStripMenuItem_Click);
             // 
             // changeProjectNameToolStripMenuItem
             // 
             this.changeProjectNameToolStripMenuItem.Name = "changeProjectNameToolStripMenuItem";
-            this.changeProjectNameToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.changeProjectNameToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.changeProjectNameToolStripMenuItem.Text = "Change Project Name...";
             this.changeProjectNameToolStripMenuItem.Click += new System.EventHandler(this.changeProjectNameToolStripMenuItem_Click);
-            // 
-            // setOutputFolderToolStripMenuItem
-            // 
-            this.setOutputFolderToolStripMenuItem.Name = "setOutputFolderToolStripMenuItem";
-            this.setOutputFolderToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.setOutputFolderToolStripMenuItem.Text = "Set Default Output Folder...";
-            this.setOutputFolderToolStripMenuItem.Click += new System.EventHandler(this.setOutputFolderToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // setupToolStripMenuItem
+            // 
+            this.setupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectCompanyLogoToolStripMenuItem,
+            this.setDefaultOutputFoderToolStripMenuItem});
+            this.setupToolStripMenuItem.Name = "setupToolStripMenuItem";
+            this.setupToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.setupToolStripMenuItem.Text = "Setup";
+            // 
+            // selectCompanyLogoToolStripMenuItem
+            // 
+            this.selectCompanyLogoToolStripMenuItem.Name = "selectCompanyLogoToolStripMenuItem";
+            this.selectCompanyLogoToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.selectCompanyLogoToolStripMenuItem.Text = "Select Company Logo...";
+            this.selectCompanyLogoToolStripMenuItem.Click += new System.EventHandler(this.selectCompanyLogoToolStripMenuItem_Click);
+            // 
+            // setDefaultOutputFoderToolStripMenuItem
+            // 
+            this.setDefaultOutputFoderToolStripMenuItem.Name = "setDefaultOutputFoderToolStripMenuItem";
+            this.setDefaultOutputFoderToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.setDefaultOutputFoderToolStripMenuItem.Text = "Set Default Output Folder...";
+            this.setDefaultOutputFoderToolStripMenuItem.Click += new System.EventHandler(this.setDefaultOutputFoderToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -184,7 +203,9 @@
         private System.Windows.Forms.ToolStripMenuItem openInputFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeProjectNameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setOutputFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem selectCompanyLogoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setDefaultOutputFoderToolStripMenuItem;
     }
 }
 
