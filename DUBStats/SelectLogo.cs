@@ -8,13 +8,17 @@ namespace DUBStats
 {
     public partial class SelectLogo : Form
     {
+        private string _inputFile;
+        private Bitmap _resourceBitmap;
+
         public SelectLogo()
         {
             InitializeComponent();
             ResourceManager resources = new ResourceManager("DUBStats.Properties.Resources", Assembly.GetExecutingAssembly());
-            Bitmap bitmap = (Bitmap)resources.GetObject("Bright_Way_Logo");
+            Bitmap _resourceBitmap = (Bitmap)resources.GetObject("CompanyLogo");
 
-            pictureBox.Image = bitmap;
+            pictureBox.Image = _resourceBitmap;
+
         }
 
         private void selectImageButton_Click(object sender, EventArgs e)
@@ -28,8 +32,9 @@ namespace DUBStats
 
             if (openFileDialog.ShowDialog() != DialogResult.OK) return;
             {
+                Bitmap image1 = (Bitmap)Image.FromFile(openFileDialog.FileName, true);
 
-                //    _inputFile = openFileDialog.FileName;
+                //_inputFile = openFileDialog.FileName;
                 //    fileLocationTextBox.Text = _inputFile;
                 //    resultTextBox.Text = String.Empty;
                 //    ParseInputFile(_inputFile);

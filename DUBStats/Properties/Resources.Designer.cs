@@ -63,9 +63,9 @@ namespace DUBStats.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Bright_Way_Logo {
+        internal static System.Drawing.Bitmap CompanyLogo {
             get {
-                object obj = ResourceManager.GetObject("Bright_Way_Logo", resourceCulture);
+                object obj = ResourceManager.GetObject("CompanyLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
